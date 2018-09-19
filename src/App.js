@@ -11,7 +11,7 @@ class App extends Component {
         addResponseMessage("Welcome to this awesome chat!");
     }
 
-    handleNewUserMessage = (newMessage) => {
+    handleNewUserMessage(newMessage) {
         console.log(`New message incomig! ${newMessage}`);
         // Now send the message throught the backend API
         this.api.textRequest(newMessage)
