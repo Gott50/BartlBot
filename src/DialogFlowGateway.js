@@ -1,5 +1,7 @@
 import request from 'request';
 
+const sessionId = Math.random();
+
 export default class DialogFlowGateway {
     static textRequest(query) {
         let headers = {
@@ -8,8 +10,7 @@ export default class DialogFlowGateway {
         };
 
         let options = {
-            url: `https://api.dialogflow.com/v1/query?v=20170712&query=${query}&
-            lang=en&sessionId=b1096f0a-ba57-08fe-de27-ae8cddf17eb7&timezone=Europe/Berlin`,
+            url: `https://api.dialogflow.com/v1/query?v=20170712&query=${query}&lang=en&sessionId=${sessionId}&timezone=Europe/Berlin`,
             method: 'GET',
             headers: headers,
         };
