@@ -8,10 +8,18 @@ class App extends Component {
         addResponseMessage("Welcome to this awesome chat!");
     }
 
+    handleNewUserMessage = (newMessage) => {
+        console.log(`New message incomig! ${newMessage}`);
+        // Now send the message throught the backend API
+        addResponseMessage("response");
+    }
+
     render() {
         return (
             <div className="App">
-                <Widget/>
+                <Widget
+                    handleNewUserMessage={this.handleNewUserMessage}
+                />
             </div>
         );
     }
