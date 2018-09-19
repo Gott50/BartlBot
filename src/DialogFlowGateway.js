@@ -1,7 +1,7 @@
 import request from 'request';
 
 export default class DialogFlowGateway {
-    textRequest(query) {
+    static textRequest(query) {
         let headers = {
             'Authorization': 'Bearer 66fef4bc8f73454e9b5cd11dfc7d9c42',
             'Content-Type': 'application/json; charset=utf-8',

@@ -5,8 +5,6 @@ import DialogFlowGateway from './DialogFlowGateway'
 import 'react-chat-widget/lib/styles.css';
 
 class App extends Component {
-    api = new DialogFlowGateway();
-
     componentDidMount() {
         addResponseMessage("Welcome to this awesome chat!");
     }
@@ -14,7 +12,7 @@ class App extends Component {
     handleNewUserMessage(newMessage) {
         console.log(`New message incomig! ${newMessage}`);
         // Now send the message throught the backend API
-        this.api.textRequest(newMessage)
+        DialogFlowGateway.textRequest(newMessage)
             .then(response => {
                 console.log("res:", response)
                 response.fulfillmentMessages.forEach(this.displayResponse);
