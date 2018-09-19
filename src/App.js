@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Widget, addResponseMessage} from 'react-chat-widget';
+import {addResponseMessage, Widget} from 'react-chat-widget';
+import DialogFlowGateway from './DialogFlowGateway'
 
 import 'react-chat-widget/lib/styles.css';
 
@@ -11,7 +12,8 @@ class App extends Component {
     handleNewUserMessage = (newMessage) => {
         console.log(`New message incomig! ${newMessage}`);
         // Now send the message throught the backend API
-        addResponseMessage("response");
+        DialogFlowGateway.textRequest(newMessage)
+            .then(response => addResponseMessage(response));
     }
 
     render() {
