@@ -18,6 +18,8 @@ class App extends Component {
             .then(response => {
                 console.log("res:", response)
                 response.fulfillmentMessages.forEach(this.displayResponse);
+                if (response.action === "OPEN_LINK" && response.fulfillmentText)
+                    document.open(response.fulfillmentText);
             })
     }
 
