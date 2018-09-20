@@ -12,14 +12,16 @@ class App extends Component {
     handleNewUserMessage(newMessage) {
         DialogFlowGateway.textRequest(newMessage)
             .then(response => JSON.parse(response).result)
-            .then(result => {
-                result.fulfillment.messages.forEach(message => {
-                    if(message.type === 0)
-                        return addResponseMessage(message.speech);
-                });
-                if (result.action === "OPEN_LINK" && result.fulfillment.speech)
-                    window.open(result.fulfillment.speech);
-            }).catch(err => console.error(`handleNewUserMessage(${newMessage})`, err))
+            .then(handleResult).catch(err => console.error(`handleNewUserMessage(${newMessage})`, err));
+
+        function handleResult(result) {
+            result.fulfillment.messages.forEach(message => {
+                if (message.type === 0)
+                    return addResponseMessage(message.speech);
+            });
+            if (result.action === "OPEN_LINK" && result.fulfillment.speech)
+                window.open(result.fulfillment.speech);
+        }
     }
 
     render() {
