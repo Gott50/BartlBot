@@ -10,22 +10,16 @@ class App extends Component {
     }
 
     handleNewUserMessage(newMessage) {
-        console.log(`New message incomig! ${newMessage}`);
-        // Now send the message throught the backend API
         DialogFlowGateway.textRequest(newMessage)
             .then(response => JSON.parse(response).result)
             .then(result => {
-                console.log("res:", result)
                 result.fulfillment.messages.forEach(message => {
-                    console.log("mess:", message)
                     if(message.type === 0)
                         return addResponseMessage(message.speech);
 
                 });
-                if (result.action === "OPEN_LINK" && result.fulfillment.speech){
-                    console.log("open: ", result.fulfillment.speech)
+                if (result.action === "OPEN_LINK" && result.fulfillment.speech)
                     window.open(result.fulfillment.speech);
-                }
             })
     }
 

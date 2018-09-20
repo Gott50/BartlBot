@@ -18,7 +18,6 @@ export default class DialogFlowGateway {
         return new Promise(function (resolve, reject) {
             function callback(error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    console.log(body);
                     resolve(body)
                 }else reject(error)
             }
