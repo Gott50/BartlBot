@@ -16,11 +16,10 @@ class App extends Component {
                 result.fulfillment.messages.forEach(message => {
                     if(message.type === 0)
                         return addResponseMessage(message.speech);
-
                 });
                 if (result.action === "OPEN_LINK" && result.fulfillment.speech)
                     window.open(result.fulfillment.speech);
-            })
+            }).catch(err => console.error(`handleNewUserMessage(${newMessage})`, err))
     }
 
     render() {
